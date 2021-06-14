@@ -6,7 +6,9 @@ export const getMovieData = async () => {
       data: {
         data: { movies },
       },
-    } = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+    } = await axios.get(
+      "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
+    );
     console.log(movies);
     return movies;
   } catch (e) {
