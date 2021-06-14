@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getMovieData } from "./libs/api";
 import Movie from "./Movie";
+import "./App.css";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -16,11 +17,14 @@ function App() {
   }, []);
   return (
     <div>
-      {loading
-        ? "loading..."
-        : movies.map((movie) => {
-            console.log(movie);
-            return (
+      <section className="container">
+        {loading ? (
+          <div className="loader">
+            <span className="loader__text">Loading...</span>
+          </div>
+        ) : (
+          <div className="movies">
+            {movies.map((movie) => (
               <Movie
                 key={movie.id}
                 id={movie.id}
@@ -29,8 +33,10 @@ function App() {
                 summary={movie.summary}
                 poster={movie.medium_cover_image}
               />
-            );
-          })}
+            ))}
+          </div>
+        )}
+      </section>
     </div>
   );
 }
